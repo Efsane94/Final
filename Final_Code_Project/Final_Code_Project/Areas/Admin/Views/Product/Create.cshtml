@@ -1,0 +1,93 @@
+﻿@model Final_Code_Project.Models.Product
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    @*@Html.HiddenFor(p=>p.SectionCategory.Category.Id)*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.AdditionDate)
+        @Html.TextBoxFor(m => m.AdditionDate, new { @class = "form-control", id = "datepicker" })
+        @Html.ValidationMessageFor(m => m.AdditionDate, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Price, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label>Section</label>
+        @Html.DropDownList("SectionId", new SelectList(ViewBag.sections, "Id", "Name"), "Select Section", new { @class = "form-control", id="section"})
+        @Html.ValidationMessageFor(m => m.SectionCategory.Section.Name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+       <label>Category</label>
+       <select id="category" class="form-control" name="categoryId">
+           <option>Select Category</option>
+       </select>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Photo)
+        @Html.TextBoxFor(m => m.Photo, new { @class = "form-control", type = "file" })
+        @Html.ValidationMessageFor(m => m.Photo, null, new { @class = "text-danger" })
+    </div>
+
+    @Html.ValidationMessage("allError")
+
+    <input type="submit" class="btn btn-outline-success" value="Create" />
+    <a href="Admin/Product/Index" class="btn btn-outline-primary">Back To List</a>
+</form>
+@section scripts{
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+
+        var section = document.querySelector("#section");
+        var categories = document.querySelector("#category");
+
+        section.onchange = function () {
+
+            categories.innerHTML = "<option>Select Category</option>";
+            var secId = section.value;
+
+            var http = new XMLHttpRequest();
+
+            http.onreadystatechange = function () {
+                if (this.readyState === 4 && http.status === 200) {
+                    var data = JSON.parse(http.responseText);
+
+                    for (var category of data) {
+                        var option = document.createElement("option");
+                        option.setAttribute("value", category.Id);
+                        option.innerText = category.Name;
+
+                        categories.append(option);
+                    }
+                }
+            }
+            http.open("GET", "/Admin/Ajax/GetCategories/" + secId, true);
+
+            http.send();
+        }
+    </script>
+   
+}

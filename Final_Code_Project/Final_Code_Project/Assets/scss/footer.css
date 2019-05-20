@@ -1,0 +1,167 @@
+footer {
+  background-color: #252525;
+  padding: 70px 0 60px;
+  position: relative;
+  bottom: 0;
+}
+
+footer .container .footer_navbar .footernav .footer_logo {
+  float: left;
+}
+
+footer .container .footer_navbar .footernav .footer_nav {
+  float: left;
+}
+
+footer .container .footer_navbar .footernav .footer_nav ul {
+  margin-top: 3px;
+}
+
+footer .container .footer_navbar .footernav .footer_nav ul li {
+  list-style-type: none;
+}
+
+footer .container .footer_navbar .footernav .footer_nav ul li a {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  font-weight: 400;
+  font-family: "Ubuntu", sans-serif;
+  padding: 0 10px;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+footer .container .footer_navbar .footernav .footer_nav ul li a:hover {
+  color: white;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+footer .container .footer_navbar .single_widget_area ul {
+  margin: 0px;
+}
+
+footer .container .footer_navbar .single_widget_area ul li {
+  float: left;
+  width: 50%;
+}
+
+footer .container .footer_navbar .single_widget_area ul li a {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-decoration: none;
+  font-family: "Ubuntu", sans-serif;
+  cursor: pointer;
+}
+
+footer .container .footer_navbar .single_widget_area ul li a:hover {
+  color: white;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+footer .container .footer_head {
+  margin-bottom: 60px;
+}
+
+footer .container .footer_head .footer_heading {
+  margin-bottom: 30px;
+}
+
+footer .container .footer_head .footer_heading h6 {
+  color: #ffffff;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+footer .container .footer_head .footer_login_area form {
+  position: relative;
+  width: 270px;
+}
+
+footer .container .footer_head .footer_login_area form input {
+  background-color: #252525;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  font-weight: 500;
+  width: 90%;
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+footer .container .footer_head .footer_login_area form button {
+  background-color: #252525;
+  font-size: 14px;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  right: 10%;
+}
+
+footer .container .footer_head .footer_social {
+  margin-top: 50px;
+}
+
+footer .container .footer_head .footer_social .social_area {
+  margin-left: 25px;
+}
+
+footer .container .footer_head .footer_social .social_area a {
+  padding: 0px 10px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+footer .container .footer_head .footer_social .social_area [data-title]:hover::before {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 20px;
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 2px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  font-family: sans-serif;
+  white-space: nowrap;
+}
+
+footer .container .footer_head .footer_social .social_area [data-title]:hover::after {
+  position: absolute;
+  bottom: 20px;
+  left: 8px;
+  display: inline-block;
+  color: #fff;
+  border: 8px solid transparent;
+  border-bottom: 8px solid #000;
+}
+
+footer .container .colorlib .copyright p {
+  color: #787878;
+  font-size: 16px;
+  line-height: 2;
+  font-weight: 400;
+}
+
+footer .container .colorlib .copyright p i {
+  font-size: 14px;
+  padding: 0px 3px;
+}
+
+footer .container .colorlib .copyright p a {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+}
+/*# sourceMappingURL=footer.css.map */

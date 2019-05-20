@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Final_Code_Project.Models.ProductColorSize>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<a href="/Admin/ProductColorSize/Create" class="btn btn-primary" style="margin-bottom:15px;">Create New</a>
+<div class="table">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="font-size:20px; font-weight:bold;">Name</th>
+                <th style="font-size:20px; font-weight:bold;">Image</th>
+                <th style="font-size:20px; font-weight:bold;">Size</th>
+                <th style="font-size:20px; font-weight:bold;">Color</th>
+                <th style="font-size:20px; font-weight:bold;">Amount</th>
+                <th style="font-size:20px; font-weight:bold;">Edit</th>
+                <th style="font-size:20px; font-weight:bold;">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td style="font-size:16px; font-weight:bold;">@item.Product.Name</td>
+                <td style="font-size:16px; font-weight:bold;">
+                    <img src="~/Assets/img/@item.Product.Image" alt="Alternate Text" style="width:100px;" />
+                </td>
+                <td style="font-size:16px; font-weight:bold;">@item.Size.Name</td>
+                <td style="font-size:16px; font-weight:bold;">@item.Color.Name</td>
+                <td style="font-size:16px; font-weight:bold;">@item.Amount</td>
+
+                <td>
+                    <a href="/Admin/ProductColorSize/Edit/@item.Id" class="btn btn-warning"><i class="far fa-edit"></i></a>
+                </td>
+                <td>
+                    <a href="/Admin/ProductColorSize/Delete/@item.Id" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+

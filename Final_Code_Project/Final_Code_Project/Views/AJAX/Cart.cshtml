@@ -1,0 +1,38 @@
+﻿@model Final_Code_Project.Models.ViewModels.Shop_VM
+<div class="modal fade" id="favModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal_dialog" role="document">
+        <div class="modal-content modal_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Favourite</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body col-lg-12 modal_body fav_box">
+                <div class="row">
+
+                    @foreach (var item in Model.Favorites)
+                    {
+                        <div class="col-lg-6 col-md-12 col-12 selected_product" data-id="@item.ProductId" data-status="on">
+                            <a href="/AJAX/RemoveFavourite/@item.ProductId"  aria-label="Close" >
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                            <img src="~/Assets/img/@item.Product.Image" alt="">
+                            <div class="product_description">
+                                <h5>@item.Product.Name
+                                </h5>
+                                <p class="pro_price">$ @item.Product.Price</p>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

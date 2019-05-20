@@ -1,0 +1,395 @@
+.shop_main{
+    height: 150px;
+    background-image: url(img/bg-img/breadcumb.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+    .overlay_2{
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color:rgba(255, 255, 255, 0.9);
+        
+    }
+    .container{
+        width:100%;
+        .row{
+            .col-12{
+                height: 40px;
+                .title{
+                    h2{
+                        font-size: 30px;
+                        text-transform: uppercase;
+                        font-weight: 700;
+                        font-family: "Ubuntu", sans-serif;
+                        letter-spacing: 1px;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+.shop_area{
+    margin-top:50px;
+    .container{
+        .row{
+            .shop_sidebar_area{
+                .category_filter{
+                    h6{
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-bottom: 40px;
+                    }
+                    .categories_menu{
+                        ul{
+                            list-style-type: none;
+                            padding: 0px;
+                            li{
+                                margin-bottom: 10px;
+                                a{
+                                    color:black;
+                                    text-decoration: none;
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                    font-family: "Poppins", sans-serif;
+                                    
+                                }
+                                ul{
+                                    display: none;
+                                    transition:.3s ease-in-out;
+                                    li{
+                                        margin-left: 15px;
+                                        font-size: 13px;
+                                        font-weight: 300;
+                                        color: #787878;
+                                        font-family: "Poppins", sans-serif;
+                                        padding-top:5px;
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .price{
+                    h6{
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-bottom: 40px;
+                        margin-top: 30px;
+                    }
+                    .rangeslider{
+                        @mixin range-slider($width, $height, $input-top, $input-bg-color, $input-thumb-color, $float:none, $input-height:20px, $input-border-radius:14px) {
+                            position: relative;
+                            width: $width;
+                            height: $height;
+                            float: $float;
+                            text-align: center;
+                              
+                            input[type="range"] {
+                              pointer-events: none;
+                              position: absolute;
+                              -webkit-appearance: none;
+                              -webkit-tap-highlight-color: rgba(255, 255, 255, 0);    
+                              border: none;
+                              border-radius: $input-border-radius;
+                              background: $input-bg-color;
+                              box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
+                              -webkit-box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
+                              overflow: hidden;
+                              left: 0;
+                              top: $input-top;
+                              width: $width;
+                              outline: none;
+                              height: $input-height;
+                              margin: 0;
+                              padding: 0;
+                            }  
+                            
+                            input[type="range"]::-webkit-slider-thumb {
+                              pointer-events: all;
+                              position: relative;
+                              z-index: 1;
+                              outline: 0;    
+                              -webkit-appearance: none;
+                              width: $input-height;
+                              height: $input-height;
+                              border: none;
+                              border-radius: $input-border-radius;
+                              background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten($input-thumb-color,60%)), color-stop(100%, $input-thumb-color)); /* android <= 2.2 */
+                              background-image: -webkit-linear-gradient(top , lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* older mobile safari and android > 2.2 */;
+                              background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
+                            }
+                            
+                            input[type="range"]::-moz-range-thumb {
+                              pointer-events: all;
+                              position: relative;
+                              z-index: 10;
+                              -moz-appearance: none;
+                              width: $input-height;
+                              height: $input-height;
+                              border: none;
+                              border-radius: $input-border-radius;
+                              background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
+                            }
+                          
+                            input[type="range"]::-ms-thumb {
+                              pointer-events: all;
+                              position: relative;
+                              z-index: 10;
+                              -ms-appearance: none;
+                              width: $input-height;
+                              height: $input-height;
+                              border-radius: $input-border-radius;
+                              border: 0;
+                              background-image: linear-gradient(to bottom, lighten($input-thumb-color,60%) 0, $input-thumb-color 100%); /* W3C */
+                            }
+                            
+                            input[type=range]::-moz-range-track {
+                              position: relative;
+                              z-index: -1;
+                              background-color: rgba(0, 0, 0, 1);
+                              border: 0;
+                            }
+                            
+                            input[type=range]:last-of-type::-moz-range-track {
+                              -moz-appearance: none;
+                              background: none transparent;
+                              border: 0;
+                            } 
+                            
+                            input[type=range]::-moz-focus-outer {
+                              border: 0;
+                            }
+                          }
+                          
+                          section.range-slider {
+                            @include range-slider(300px, 300px, 50px, #F1EFEF, #413F41, left);
+                          }
+                          
+                    }
+                     
+                    .ui-slider-popup {
+                        position: absolute !important;
+                        width: 64px;
+                        height: 64px;
+                        text-align: center;
+                        font-size: 36px;
+                        padding-top: 14px;
+                        z-index: 100;
+                        opacity: 0.8;
+                    }
+                    }
+                }
+            }
+            .shop_product_area{
+                .row{
+                    .col-12{
+                        .product_topbar{
+                            margin-bottom: 20px;
+                            .total_product{
+                                font-size: 14px;
+                                text-transform: uppercase;
+                                font-weight: 600;
+                                p{
+                                    span{
+                                        color:blue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .products{
+                        margin-bottom: 40px;
+                        .product_wrapper{
+                            
+                            position: relative;
+                            .product_image{
+                                img{
+                                    width:100%;
+                                }
+                            }
+                            .btnlike{
+                                position: absolute;
+                                right:10px;
+                                top:10px;
+                            }
+                          
+                            .product_content{
+                                span{
+                                    font-size: 10px;
+                                    text-transform: uppercase;
+                                    color: #787878;
+                                    margin-bottom: 15px;
+                                    letter-spacing: 0.75px;
+                                    font-weight: 600;
+                                }
+                                a{
+                                    text-decoration: none;
+                                    h6{
+                                        color: #222222;
+                                        margin-bottom: 5px;
+                                    }
+                                }
+                                p{
+                                    margin-bottom: 0;
+                                    font-size: 14px;
+                                    font-family: "Ubuntu", sans-serif;
+                                    font-weight: 700;
+                                    color: #000000;
+                                }
+                            }
+                            .btn_add_cart{
+                                position: absolute;
+                                top:68%;
+                                 left: 10%;
+                                width:200px;
+                                height: 50px;
+                                visibility: hidden;
+                                @media(min-width:375px) and (max-width:768px){
+                                    left: 13%;
+                                    width: 150px;
+                                }
+
+                                @media(max-width:375px){
+                                    width: 200px;
+                                    left: 20%;
+                                    top: 70%;                                
+
+                                }
+                                @media(min-width:375px) and (max-width:576px){
+                                    left: 25%;
+                                    width: 200px;
+                                    top: 80%;
+                                }
+
+                                @media(min-width:576px) and (max-width:768px){
+                                    left: 16%;
+                                    width: 165px;
+                                }
+
+                                @media(min-width:768px) and (max-width:991px){
+                                    left: 12%;
+                                    width: 160px;
+                                }
+                                @media(min-width:991px) and (max-width:1200px){
+                                    width: 160px;
+                                   left: 12%;
+                                    
+                                }
+                                // @media(min-width:1026px) and (max-width:1200px){
+                                //     left: 40px;
+                                //     top: 60%;
+                                //     width: 130px;
+                                //     font-size: 14px;
+                                // }
+                                a{
+                                    font-size: 14px;
+                                    color: white;
+                                    line-height: 50px;
+                                    letter-spacing: 1.5px;
+                                    text-transform: uppercase;
+                                    font-family: "Ubuntu", sans-serif;
+                                    font-weight: 600;
+                                    background: blue;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    text-decoration: none;
+                                }
+                                a:hover{
+                                    background: #dc3545;;
+                                }
+                            }
+                        }
+                        .product_wrapper:hover .btn_add_cart{
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+        }
+    }
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // position: relative;
+                        // height: 60px;
+                        // width: 210px;
+                        // display: inline-block;
+                        // margin-top: -5px;
+                        // margin-left: 20px;
+                        
+                        // input{
+                        //     position: absolute;
+                        // }
+                        // input[type='range'] {
+                        //     width: 210px;
+                        //     height: 30px;
+                        //     overflow: hidden;
+                        //     cursor: pointer;
+                        //       outline: none;
+                        //   }
+                        //   input[type='range'],
+                        //   input[type='range']::-webkit-slider-runnable-track,
+                        //   input[type='range']::-webkit-slider-thumb {
+                        //     -webkit-appearance: none;
+                        //       background: none;
+                        //   }
+                        //   input[type='range']::-webkit-slider-runnable-track {
+                        //     width: 200px;
+                        //     height: 1px;
+                        //     background: #003D7C;
+                        //   }
+                          
+                        //   input[type='range']:nth-child(2)::-webkit-slider-runnable-track{
+                        //     background: none;
+                        //   }
+                          
+                        //   input[type='range']::-webkit-slider-thumb {
+                        //     position: relative;
+                        //     height: 15px;
+                        //     width: 15px;
+                        //     margin-top: -7px;
+                        //     background: #fff;
+                        //     border: 1px solid #003D7C;
+                        //     border-radius: 25px;
+                        //     z-index: 1;
+                        //   }
+                          
+                          
+                        //   input[type='range']:nth-child(1)::-webkit-slider-thumb{
+                        //     z-index: 2;
+                        //   }
+                        // span.range_min{
+                        //     position: absolute;
+                        //     margin-top: 30px;
+                        //     left: 0;
+                        // }
+                        // span.range_max{
+                        //     position: absolute;
+                        //     margin-top: 30px;
+                        //     right: 0;
+                        // }

@@ -1,0 +1,236 @@
+.login_main{
+    height: 150px;
+    background-image: url(img/bg-img/breadcumb.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+    .overlay_3{
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color:rgba(255, 255, 255, 0.9);
+        
+    }
+    .container{
+        width:100%;
+        .row{
+            .col-12{
+                height: 40px;
+                .logintitle{
+                    h2{
+                        font-size: 30px;
+                        text-transform: uppercase;
+                        font-weight: 700;
+                        font-family: "Ubuntu", sans-serif;
+                        letter-spacing: 1px;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+
+.login_box_area {
+    margin-top:100px;
+    margin-bottom: 50px;
+    .login_box_img {
+        margin-right: -30px;
+        position: relative;
+        height: 100%;
+        @media(max-width:576px){
+            margin-right: 0px;
+        }
+        @media screen and (max-width: 768px) and (min-width: 576px){
+            width:100%;
+            img{
+                width: 100%;
+            }
+        }
+        @media screen and (min-width: 768px) and (max-width: 1024px){
+            width: 100%;
+            img{
+                height: auto;
+                
+            }
+        }
+        .hover {
+            position: absolute;
+            top: 50%;
+            left: 0px;
+            text-align: center;
+            width: 100%;
+            transform: translateY(-50%);
+            h4 {
+                font-size: 24px;
+                color: #fff;
+                margin-bottom: 15px;
+            }
+            p {
+                max-width: 380px;
+                margin: 0px auto 25px;
+                color: #fff;
+            }
+           
+            a{
+                text-decoration:none;
+            }
+        }
+    }
+}
+
+.login_form_inner {
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.07);
+    height: auto;
+    text-align: center;
+    padding-top:115px;
+    padding-bottom: 62px;
+    @media screen and (min-width: 768px) and (max-width: 1024px){
+        width:100%;
+        padding-top:50px;
+        padding-bottom: 40px;
+    }
+    
+    h3 {
+        text-transform: uppercase;
+        font-size: 18px;
+        margin-bottom: 80px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1024px){
+        h3{
+            margin-bottom: 40px;
+        }
+    }
+    .login_form {
+        max-width: 385px;
+        margin: auto;
+    }
+
+}
+
+.login_form {
+    .form-group {
+        input {
+            height: 54px;
+            border: none;
+            border-bottom: 1px solid #cccccc;
+            border-radius: 0px;
+            outline: none;
+            box-shadow: none;
+        }
+        .creat_account {
+            margin-top: 10px;
+            margin-bottom: 15px;
+            text-align: left;
+            input {
+                height: auto;
+                margin-right: 10px;
+            }
+        }
+        a {
+            font-size: 16px;
+            margin-top: 20px;
+            display: block;
+            text-decoration: none;
+        }
+    }
+}
+
+.main_btn{
+    border-radius: 0px;
+    line-height: 38px;
+    text-transform: uppercase;
+	display: inline-block;
+	padding: 0px 30px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 500;
+    line-height: 48px;
+    background-color: blue;
+	border: 1px solid blue;
+	outline: none !important;
+	box-shadow: none !important;
+	text-align: center;
+	border: 1px solid blue;
+	cursor: pointer;
+    transition: all 300ms linear 0s;
+    font-weight: 600;
+	&:hover{
+		background: transparent;
+        color: blue;
+        
+	}
+}
+
+.login_box_area{
+    .container{
+        .row{
+            .register_boxx{
+                .register_form_inner{
+                    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.07);
+                    height: 100%;
+                    text-align: center;
+                    padding-top:80px;
+                    @media screen and (min-width: 768px) and (max-width: 1024px){
+                        width:100%;
+                        padding-top:16px;
+                    }
+                   
+                    h3 {
+                        text-transform: uppercase;
+                        font-size: 18px;
+                        margin-bottom: 60px;
+                        @media screen and (min-width: 768px) and (max-width: 1024px){
+                            
+                                margin-bottom: 20px;
+                        
+                        }
+                    }
+                    .register_form {
+                        max-width: 420px;
+                        margin: auto;
+                        .form-group {
+                            input {
+                                height: 54px;
+                                border: none;
+                                border-bottom: 1px solid #cccccc;
+                                border-radius: 0px;
+                                outline: none;
+                                box-shadow: none;
+                            }
+                            .creat_account {
+                                margin-top: 10px;
+                                margin-bottom: 15px;
+                                text-align: left;
+                                input {
+                                    height: auto;
+                                    margin-right: 10px;
+                                }
+                            }
+                            a {
+                                font-size: 16px;
+                                margin-top: 20px;
+                                display: block;
+                                text-decoration: none;
+                            }
+                            button{
+                                width:150px;
+                            }
+                        }
+
+                    }
+                
+                }
+            }
+        }
+    }
+}
+
+
+
+

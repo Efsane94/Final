@@ -1,0 +1,22 @@
+﻿@model Final_Code_Project.Models.Product
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 my-5">
+        <form method="post">
+            @Html.AntiForgeryToken()
+            <div class="alert alert-danger">
+                Are you sure to delete this Product???
+            </div>
+            <div class="Model">
+                <h3>@Model.Name</h3>
+                <img src="~/Assets/img/@Model.Image" alt="Alternate Text" style="width:70%;"/>
+                <input type="submit" class="btn btn-outline-danger btn-block" value="let's do that" />
+            </div>
+        </form>
+    </div>
+</div>
+

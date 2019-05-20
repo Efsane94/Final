@@ -1,0 +1,6 @@
+﻿@model List<Final_Code_Project.Models.Size>
+<option value="">Select Size</option>
+@foreach (var item in Model)
+{
+    <option value="@item.Id">@item.Name</option>
+}

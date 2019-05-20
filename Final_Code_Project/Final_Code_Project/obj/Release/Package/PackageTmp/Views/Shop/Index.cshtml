@@ -1,0 +1,212 @@
+﻿@model Final_Code_Project.Models.ViewModels.Shop_VM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="shop_main" style="background-image: url(/Assets/img/@Model.ShopHeader.Image)">
+    <div class="overlay_2"></div>
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="title text-center">
+                    <h2>@Model.ShopHeader.Title</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="shop_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12 col-md-12">
+                <div class="shop_product_area">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="product_topbar d-flex justify-content-between">
+                                <div class="total_product">
+                                    <p><span>@ViewBag.productCount</span> products found</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="categoryProducts">
+                        @Html.Partial("_loadProducts")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-center mb-3 mt-3">
+                <button class="btn btn-primary" style="cursor:pointer;border-radius:5px;font-weight:bold;font-size:17px;padding:10px 10px;" id="showMore"> Show More</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section scriptss{
+    <script>
+    var skipProducts =@Model.Products.Count();
+    var sectionId=@ViewBag.sectionId;
+    var categoryId =@ViewBag.categoryId;
+    var totalProducts =@ViewBag.productCount;
+
+    if (totalProducts <= skipProducts) {
+        $("#showMore").hide();
+    }
+    $(function () {
+        $(document).on("click","#showMore", function () {
+            $.ajax({
+                url: "/AJAX/LoadMoreProducts",
+                data: {
+                    skipCount: skipProducts,
+                    section: sectionId,
+                    category: categoryId
+                },
+                success: function (res) {
+                    $("#categoryProducts").append(res);
+
+                    skipProducts += 4;
+                    if (skipProducts >= totalProducts) {
+                        $("#showMore").hide();
+                    }
+                }
+            })
+        })
+    });
+
+    //$(document).on("click", ".row .product_wrapper", function () {
+    //    var loadID = $(this).data('id');
+    //    alert(loadID);
+    //})
+
+    $(function () {
+        $(document).on("click", ".fav_btn", function () {
+            var clickbutton = $(this);
+            var favId = $(clickbutton).data("r");
+            var favImage = $(clickbutton).data("photo");
+            var favName = $(clickbutton).data("name");
+            var favPrice = $(clickbutton).data("price");
+
+            if ($(clickbutton).children().attr("data-status") == "off") {
+
+
+                $.ajax({
+                    url: '/AJAX/AddFavorite',
+                    type: 'GET',
+                    data: { id: favId },
+                    success: function (response) {
+                        if (response.status == "200") {
+                            $(clickbutton).children().attr("data-status", "on");
+                            $(clickbutton).children().children().css("color", "red");
+
+                            var item = '<div class="col-lg-6 col-md-12 col-12 selected_product" data-id="'+favId+'">\
+                        <button type="button" class="close_button" data-Id="'+ favId+'" aria-label="Close">\
+                            <span aria-hidden="true">&times;</span>\
+                        </button>\
+                        <img src="/Assets/img/'+ favImage + '">\
+                            <div class="product_description">\
+                                <h5>'+ favName + '</h5>\
+                                <p class="pro_price">$' + favPrice + '</p>\
+                            </div>\
+                        </div>';
+                          
+                            $(".fav_box .row").append(item);
+                        }
+                    },
+                    error: function () {
+                        console.log("error");
+                    }
+                });
+
+
+
+            }
+            else if ($(clickbutton).children().attr("data-status") == "on") {
+                $.ajax({
+                    url: '/AJAX/DeleteFavorite',
+                    type: 'GET',
+                    data: { id: favId },
+                    success: function (response) {
+                        if (response.status == "200") {
+
+                            $(clickbutton).children().attr("data-status", "off");
+                            $(clickbutton).children().children().css("color", "darkgray");
+
+                            $(".fav_box .row").find('[data-id="'+favId+'"]').remove();
+
+                        }
+                    },
+                    error: function () {
+                        console.log("error");
+                    }
+                });
+         }
+
+    })
+       
+    });
+
+    $(function () {
+        $(document).on("click", ".btn_add_cart", function () {
+            var favId = $(this).data("Add");
+            var favImage = $(this).data("photo");
+            var favName = $(this).data("name");
+            var favPrice = $(this).data("price");
+
+            var item = '<div class="col-lg-6 col-md-12 col-12 selected_product">\
+                        <a href="/AJAX/RemoveFavourite/'+ favId +'" class="close_btn" aria-label="Close">\
+                            <span aria-hidden="true">&times;</span>\
+                        </a>\
+                        <img src="/Assets/img/'+ favImage + '">\
+                            <div class="product_description">\
+                                <h5>'+ favName + '</h5>\
+                                <p class="pro_price">$' + favPrice + '</p>\
+                            </div>\
+                        </div>';
+
+            $(".add_cart").append(item);
+        })
+        });
+
+        $(function () {
+            $(document).on("click", ".close_button", function () {
+                var closedId = $(this).parents().data("id");
+                var button = $(this);
+                var dataStatus = $(this).parents().data("status");
+                $.ajax({
+                    url: '/AJAX/RemoveFavourite',
+                    type: 'GET',
+                    data: { id: closedId },
+                    success: function (response) {
+                        if (response.status === "200") {
+                            button.parent().parent().remove();
+                        }
+                    }
+                })
+                
+               
+            })
+        })
+
+        //$(function () {
+        //    $(document).on("click", ".close_button", function () {
+        //        var dataId = $(this).data("Id");
+        //        console.log($dataId);
+        //    })
+        //})
+
+    $(function () {
+
+
+    })
+
+
+
+    </script>
+}
+

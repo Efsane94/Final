@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Final_Code_Project.Models.Image>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<a href="/Admin/Images/Create" class="btn btn-primary" style="margin-bottom:15px;">Create New</a>
+<div class="table">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="font-size:20px; font-weight:bold;">Name</th>
+                <th style="font-size:20px; font-weight:bold;">Image</th>
+                <th style="font-size:20px; font-weight:bold;">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="font-size:16px; font-weight:bold;">@item.Product.Name</td>
+                    <td>
+                        <img src="~/Assets/img/@item.ImageSource" alt="Alternate Text" style="width:100px; height:80px;" />
+                    </td>
+                    <td>
+                        <a href="/Admin/Images/Delete/@item.Id" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+
+

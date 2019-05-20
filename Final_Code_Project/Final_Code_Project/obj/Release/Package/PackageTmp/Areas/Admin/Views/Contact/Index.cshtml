@@ -1,0 +1,36 @@
+﻿@model Final_Code_Project.Models.Contact
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<a class="btn btn-warning btn-block" href="/Admin/Contact/Edit" style="margin-top:20px; height:40px;"><i class="fas fa-edit" style="font-size:18px; text-align:center;"></i></a>
+</div>
+<div class="col-md-12">
+    <h1 style="margin-top:20px; margin-left:10px;">@Model.Title</h1>
+    <p style="font-size:20px;">
+        @Model.Information
+    </p>
+    <div class="adress_area">
+        <p>
+            <span style="font-size:18px;font-weight:600;">Address:</span>
+            @Model.Address
+        </p>
+        <p>
+            <span style="font-size:18px; font-weight:600;">Telephone</span>
+            @Model.Number
+        </p>
+    </div>
+    <div class="col-md-12">
+        <div class="gmap_canvas">
+            @Html.Raw(Model.Map)
+        </div>
+    </div>
+
+ <div>
+
+ 
+
+
+
+

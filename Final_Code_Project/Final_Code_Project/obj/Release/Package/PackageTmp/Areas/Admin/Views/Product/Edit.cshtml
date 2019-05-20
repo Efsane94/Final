@@ -1,0 +1,97 @@
+﻿@model Final_Code_Project.Areas.Admin.Models.EditVM
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Product.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Name)
+        @Html.TextBoxFor(m => m.Product.Name, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Product.Name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Description)
+        @Html.TextBoxFor(m => m.Product.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Product.Description, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.AdditionDate)
+        @Html.TextBoxFor(m => m.Product.AdditionDate, Model.Product.AdditionDate.ToString("MM'/'dd'/'yyyy"), new { @class = "form-control", id = "datepicker" })
+        @Html.ValidationMessageFor(m => m.Product.AdditionDate, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Price)
+        @Html.TextBoxFor(m => m.Product.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Product.Price, null, new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.SectionCategory.Section.Name)
+        @Html.DropDownList("SectionId", null, new { @class = "form-control", id="section" })
+        @Html.ValidationMessageFor(m => m.Product.SectionCategory.Section.Name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.Product.SectionCategory.Category.Name)
+        @Html.DropDownList("CategoryId", null, new { @class = "form-control", id = "category" })
+        @Html.ValidationMessageFor(m => m.Product.SectionCategory.Category.Name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Photo)
+        @Html.TextBoxFor(m => m.Product.Photo, new { @class = "form-control", type = "file" })
+        @Html.ValidationMessageFor(m => m.Product.Photo, null, new { @class = "text-danger" })
+    </div>
+
+    @Html.ValidationMessage("allError")
+
+    <input type="submit" class="btn btn-outline-success" value="Edit" />
+    <a href="Admin/Product/Index" class="btn btn-outline-primary">Back To List</a>
+</form>
+@section scripts{
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+
+        var section = document.querySelector("#section");
+        var categories = document.querySelector("#category");
+
+        section.onchange = function () {
+
+            categories.innerHTML = "<option>Select Category</option>";
+            var secId = section.value;
+
+            var http = new XMLHttpRequest();
+
+            http.onreadystatechange = function () {
+                if (this.readyState === 4 && http.status === 200) {
+                    var data = JSON.parse(http.responseText);
+
+
+
+                    for (var category of data) {
+                        var option = document.createElement("option");
+                        option.setAttribute("value", category.Id);
+                        option.innerText = category.Name;
+
+                        categories.append(option);
+                    }
+                }
+            }
+            http.open("GET", "/Admin/Ajax/GetCategories/" + secId, true);
+
+            http.send();
+        }
+    </script>
+}
+
+

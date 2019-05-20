@@ -1,0 +1,93 @@
+﻿@model Final_Code_Project.Models.ViewModels.ProductCS_VM
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ProductSize.ProductId)
+    @Html.HiddenFor(m => m.ProductSize.SizeId)
+    @Html.HiddenFor(m => m.ProductSize.ColorId)
+    @*@Html.HiddenFor(m => m.ProductSize.Amount)*@
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductSize.Product.Name)
+        @Html.TextBoxFor(m => m.ProductSize.Product.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProductSize.Product.Name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductSize.Size.Name)
+        @Html.DropDownList("SizeId", null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProductSize.Size.Name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductSize.Color.Name)
+        @Html.DropDownList("ColorId", null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProductSize.Color.Name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductSize.Amount)
+        @Html.TextBoxFor(m => m.ProductSize.Amount, new { @class = "form-control", type = "number" })
+        @Html.ValidationMessageFor(m => m.ProductSize.Amount, null, new { @class = "text-danger" })
+    </div>
+
+    @Html.ValidationMessage("allError")
+
+    <input type="submit" class="btn btn-outline-success" value="Edit" />
+    <a href="Admin/ProductColorSize/Index" class="btn btn-outline-primary">Back To List</a>
+</form>
+
+@section scripts{
+    <script>
+        ////var product = document.querySelector("#products");
+        ////var size = document.querySelector("#sizes");
+
+
+        //product.onchange = function () {
+        //    var proId = product.value;
+
+        //    var http = new XMLHttpRequest();
+
+        //    http.onreadystatechange = function () {
+        //        if (http.readyState === 4 && http.status === 200) {
+        //            var data = http.responseText;
+
+        //            for (var size2 of data) {
+        //                var option = document.createElement("option");
+        //                option.setAttribute("value", size2.Id);
+        //                option.innerText = size2.Name;
+
+        //                size.append(option);
+        //            }
+        //        }
+        //    }
+
+        //    http.open("GET", "/Admin/Ajax/LoadSizes/" + proId, true);
+
+        //    http.send();
+        //}
+
+        $(function () {
+
+            $(document).on("change", "#products", function () {
+                var selectedproduct = $("#products").val();
+
+                if (selectedproduct) {
+                    $.ajax({
+                        type: "GET",
+                        data: { id: selectedproduct },
+                        url: "/Admin/Ajax/LoadSizes",
+                        success: function (res) {
+                            $("#sizes").html(res)
+                        }
+                    });
+                }
+            })
+
+        });
+    </script>
+}

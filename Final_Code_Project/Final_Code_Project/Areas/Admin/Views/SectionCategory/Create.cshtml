@@ -1,0 +1,26 @@
+﻿
+@model Final_Code_Project.Models.SectionCategory
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<form method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Section.Name)
+        @Html.DropDownList("sectionId", new SelectList(ViewBag.sections, "Id", "Name"), "Select Section", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Section.Name, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Category.Name)
+        @Html.DropDownList("categoriId", new SelectList(ViewBag.categories, "Id", "Name"), "Select Category", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Category.Name, null, new { @class = "text-danger" })
+    </div>
+
+    @Html.ValidationMessage("allError")
+
+    <input type="submit" class="btn btn-outline-success" value="Create" />
+    <a href="Admin/SectionCategory/Index" class="btn btn-outline-primary">Back To List</a>
+</form>

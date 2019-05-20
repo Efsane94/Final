@@ -1,0 +1,235 @@
+﻿@model Final_Code_Project.Models.ViewModels.Details_VM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="product_details" style="margin-top:30px;">
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="product_images col-lg-6 col-6 col-12">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        @for (int i = 0; i < Model.Images.Count(); i++)
+                        {
+                            <div class="carousel-item @(i==0 ? "active" : "")">
+                                <img src="~/Assets/img/@Model.Images.ElementAt(i).ImageSource" class="d-block w-100" alt="..." style="height:531px;">
+                            </div>
+                        }
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            </div>
+            <div class="product_description col-lg-6 col-6 col-12">
+                <h2>@Model.Product.Name</h2>
+                <p class="product_price">$@Model.Product.Price</p>
+                <p class="product_desc">
+                    @Model.Product.Description
+                </p>
+                <form method="post">
+                    <div class="selectbox">
+                        <div class="col-lg-12 col-md-6 col-sm-6">
+                            <div class="opt form-group">
+                                <select class="form-control changeSize" id="sel1">
+                                    @foreach (var item in Model.Sizes)
+                                    {
+
+                                        <option data-id="@item.Id">@item.Name</option>
+                                    }
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6 col-sm-6 colors">
+                            @Html.Partial("_loadColors")
+                         
+                        </div>
+                            
+                     </div>
+                </form>
+                <div class="row">
+                    @if (Model.User == null)
+                    {
+                        <a href="/Account/Login">
+                            <div class="fav_btn" data-R="@Model.Product.Id" data-photo="@Model.Product.Image" data-price="@Model.Product.Price" data-name="@Model.Product.Name">
+                                <span style="font-size:30px; color:darkgrey; position:absolute; bottom:50px; left:15%;" class="favs" data-status="off"><i class="fas fa-heart"></i></span>
+                            </div>
+                        </a>
+
+                        <div class="btn_add_cart">
+                            <a href="/Account/Login" class="button btn_add_cart btn btn-primary" style="position:absolute; bottom:60px; left:27%; font-size:18px;">Add to Cart</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="btn_add_cart">
+                            <a class="button btn_add_cart btn btn-primary"  data-Add="@Model.Product.Id" data-photo="@Model.Product.Image" , data-price="@Model.Product.Price" data-name="@Model.Product.Name" style="position:absolute; bottom:60px; left:27%; font-size:18px;">Add to Cart</a>
+                        </div>
+                        if (Model.Favorites.Any(x => x.ProductId == Model.Product.Id && x.UserId == Model.User.Id))
+                        {
+                            <div class="fav_btn" data-R="@Model.Product.Id" data-photo="@Model.Product.Image" data-price="@Model.Product.Price" data-name="@Model.Product.Name">
+                                <span style="font-size:30px; color:red; position:absolute; bottom:50px; left:15%;" class="favs" data-status="off"><i class="fas fa-heart"></i></span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="fav_btn" data-R="@Model.Product.Id" data-photo="@Model.Product.Image" data-price="@Model.Product.Price" data-name="@Model.Product.Name">
+                                <span style="font-size:30px; color:darkgrey; position:absolute; bottom:50px; left:15%;" class="favs" data-status="off"><i class="fas fa-heart"></i></span>
+                            </div>
+
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scriptss{
+    <script>
+        var sizes =@Model.Sizes.Count();
+        var proId =@Model.Product.Id;
+
+        $(function () {
+            $(document).on("change", "changeColor", function () {
+                var selectedColorId = $(this).find(':selected').attr('data-id');
+                alert(selectedColorId);
+            })
+        })
+        $(function () {
+            $(document).on("change", ".changeSize", function () {
+                var selectedSize = $(this).find(':selected').attr('data-id');
+                
+                if (selectedSize) {
+                    $(".colors").empty();
+                    $.ajax({
+                        type: "GET",
+                        data: { sizeId: selectedSize, productId: proId },
+                        url: "/AJAX/loadColor",
+                        success: function (res) {
+                            $(".colors").append(res);
+                        }
+                    })
+                }
+
+            })
+        });
+
+
+
+
+        $(function () {
+            $(document).on("click", ".fav_btn", function () {
+                var clickbutton = $(this);
+                var favId = $(clickbutton).data("r");
+                var favImage = $(clickbutton).data("photo");
+                var favName = $(clickbutton).data("name");
+                var favPrice = $(clickbutton).data("price");
+
+                if ($(clickbutton).children().attr("data-status") == "off") {
+
+
+                    $.ajax({
+                        url: '/AJAX/AddFavorite',
+                        type: 'GET',
+                        data: { id: favId },
+                        success: function (response) {
+                            if (response.status == "200") {
+                                $(clickbutton).children().attr("data-status", "on");
+                                $(clickbutton).children().children().css("color", "red");
+
+                                var item = '<div class="col-lg-6 col-md-12 col-12 selected_product" data-id="' + favId + '">\
+                        <button type="button" class="close close_button" data-dismiss="modal" aria-label="Close">\
+                            <span aria-hidden="true">&times;</span>\
+                        </button>\
+                        <img src="/Assets/img/'+ favImage + '">\
+                            <div class="product_description">\
+                                <h5>'+ favName + '</h5>\
+                                <p class="pro_price">$' + favPrice + '</p>\
+                            </div>\
+                        </div>';
+
+                                $(".fav_box .row").append(item);
+                            }
+                        },
+                        error: function () {
+                            console.log("error");
+                        }
+                    });
+
+
+
+                }
+                else if ($(clickbutton).children().attr("data-status") == "on") {
+
+
+                    $.ajax({
+                        url: '/AJAX/DeleteFavorite',
+                        type: 'GET',
+                        data: { id: favId },
+                        success: function (response) {
+                            if (response.status == "200") {
+
+                                $(clickbutton).children().attr("data-status", "off");
+                                $(clickbutton).children().children().css("color", "darkgray");
+
+
+                                $(".fav_box .row").find('[data-id="' + favId + '"]').remove();
+
+                            }
+                        },
+                        error: function () {
+                            console.log("error");
+                        }
+                    });
+
+
+
+                }
+
+
+            })
+
+
+            $(document).on("click", ".fav_btn", function () {
+
+
+
+            })
+        });
+
+
+        $(function () {
+            $(document).on("click", ".btn_add_cart", function () {
+                var favId = $(this).data("Add");
+                var favImage = $(this).data("photo");
+                var favName = $(this).data("name");
+                var favPrice = $(this).data("price");
+
+                var item = '<div class="col-lg-6 col-md-12 col-12 selected_product">\
+                        <button type="button" class="close_btn" aria-label="Close">\
+                            <span aria-hidden="true">&times;</span>\
+                        </button>\
+                        <img src="/Assets/img/'+ favImage + '">\
+                            <div class="product_description">\
+                                <h5>'+ favName + '</h5>\
+                                <p class="pro_price">$' + favPrice + '</p>\
+                            </div>\
+                        </div>';
+
+                $(".add_cart").append(item);
+            })
+        });
+    </script>
+    }

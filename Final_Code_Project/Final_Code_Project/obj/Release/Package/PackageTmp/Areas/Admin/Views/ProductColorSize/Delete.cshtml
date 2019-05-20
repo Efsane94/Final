@@ -1,0 +1,24 @@
+﻿@model Final_Code_Project.Models.ProductColorSize
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 my-5">
+        <form method="post">
+            @Html.AntiForgeryToken()
+            <div class="alert alert-danger">
+                Are you sure to delete this Product Size???
+            </div>
+            <div class="Model">
+                <h3>@Model.Product.Name</h3>
+                <h5>@Model.Size.Name</h5>
+                <h5>@Model.Color.Name</h5>
+                <input type="submit" class="btn btn-outline-danger btn-block" value="let's do that" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

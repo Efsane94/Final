@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Final_Code_Project.Models.SectionSize>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<a href="/Admin/SectionSizes/Create" class="btn btn-primary" style="margin-bottom:15px;">Create New</a>
+<table class="table table-bordered">
+    <tr>
+        <th style="font-size:20px; font-weight:bold;">
+            @Html.DisplayNameFor(model => model.Sections.Name)
+        </th>
+        <th style="font-size:20px; font-weight:bold;">
+            @Html.DisplayNameFor(model => model.Sizes.Name)
+        </th>
+        <th style="font-size:20px; font-weight:bold;">Edit</th>
+        <th style="font-size:20px; font-weight:bold;">Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="font-size:16px; font-weight:bold;">
+            @Html.DisplayFor(modelItem => item.Sections.Name)
+        </td>
+        <td style="font-size:16px; font-weight:bold;">
+            @Html.DisplayFor(modelItem => item.Sizes.Name)
+        </td>
+        <td style="font-size:16px; font-weight:bold;">
+            <a href="@Url.Action("Edit", "SectionSizes" , new { id = item.Id  })" class="btn btn-warning"><i class="far fa-edit"></i></a>
+        </td>
+        <td style="font-size:16px; font-weight:bold;">
+            <a href="/Admin/SectionSizes/Delete/@item.Id" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

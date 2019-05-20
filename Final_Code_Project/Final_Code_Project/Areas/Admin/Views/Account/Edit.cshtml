@@ -1,0 +1,152 @@
+﻿@using Final_Code_Project.Models;
+
+@{ 
+    var admin = Session["admin"] as _Admin;
+}
+
+@model Final_Code_Project.Models._Admin
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Public/Profile/vendor/bootstrap/css/bootstrap.min.css">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Public/Profile/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Public/Profile/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Public/Profile/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Public/Profile/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Public/Profile/css/main.css">
+    <!--===============================================================================================-->
+    <style>
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+            <div class="wrap-login100">
+                <form enctype="multipart/form-data" method="post" style="width:100%;">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Id)
+                    <div>
+                        <img src="~/Assets/img/@Model.Image" alt="IMG" style="width:60%;height:150px;">
+                        <div class="changeimage" style="height:70px;">
+                            <label id="#bb" style="padding: 10px;  background: #f9f8f7;  display: table;  color: forestgreen; margin-top: 20px; margin-left: 90px; ">
+                                <i style="font-size:26px; padding-right:10px;" class="fas fa-camera"></i>Change
+                                <input type="file" id="File" size="60" style=" display: none;" name="photo">
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.NewPassword)
+                        @Html.TextBoxFor(m => m.NewPassword, new { @class = "form-control", type = "password" })
+                        @Html.ValidationMessageFor(m => m.NewPassword, null, new { @class = "text-danger" })
+                    </div>
+
+                    <button class="login100-form-btn" type="submit">
+                        Update
+                    </button>
+                    <a href="Admin/MainHeader/Index" class="btn btn-outline-primary" style="margin-top:20px; margin-left:50px; border:none; color:forestgreen">Back To List</a>
+                </form>
+
+                @*<form class="login100-form validate-form" method="post">
+            <span class="login100-form-title">
+                Settings
+            </span>
+
+            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                <input class="input100" type="password" name="pass" placeholder="Password">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                <input class="input100" type="password" name="newpass" placeholder="New Password">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                <input class="input100" type="password" name="confirmpass" placeholder=" Confirm Password">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn" type="submit">
+                    Update
+                </button>
+            </div>
+
+            <div class="text-center p-t-12">
+                <span class="txt1">
+                    Forgot
+                </span>
+                <a class="txt2" href="#">
+                    Username / Password?
+                </a>
+            </div>
+
+            <div class="text-center p-t-136">
+                <a class="txt2" href="#">
+                    Create your Account
+                    <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                </a>
+            </div>
+        </form>*@
+            </div>
+		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="~/Areas/Admin/Public/Profile/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="~/Areas/Admin/Public/Profile/vendor/bootstrap/js/popper.js"></script>
+	<script src="~/Areas/Admin/Public/Profile/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="~/Areas/Admin/Public/Profile/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="~/Areas/Admin/Public/Profile/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+</html>

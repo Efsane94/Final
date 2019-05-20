@@ -1,0 +1,242 @@
+﻿@using Final_Code_Project.Models;
+
+@{
+    var user = Session["user"] as User;
+}
+
+@model Final_Code_Project.Models.ViewModels.Layout_VM
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid" style="padding-left:45px;padding-right:20px; padding-top:10px;">
+        <a class="navbar-brand" href="/Home/Index">
+            <img src="https://colorlib.com/preview/theme/essence/img/core-img/logo.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse menucat" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown homehower">
+                    <a class="nav-link dropdown-toggle home home2" href="/Shop/Index" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @Model.Sections.Where(s => s.Id == 1).First().Name
+                    </a>
+                </li>
+                <li class="nav-item dropdown homehower2">
+                    <a class="nav-link dropdown-toggle home home3" href="/Shop/Index" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @Model.Sections.Where(s => s.Id == 2).First().Name
+                    </a>
+                </li>
+                <li class="nav-item dropdown homehower3">
+                    <a class="nav-link dropdown-toggle home home4" href="/Shop/Index" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @Model.Sections.Where(s => s.Id == 3).First().Name
+                    </a>
+                </li>
+                <div class="row menu_category home2">
+                    <div class="navbar_menu row">
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 1).Take(4).ToList())
+                                {
+                                    <li id="categoryS">
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 1).Skip(4).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 1).Skip(8).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 1).Skip(12).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row menu_category2 home3">
+                    <div class="navbar_menu row">
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 2).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 2).Skip(4).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 2).Skip(8).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 2).Skip(12).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row menu_category3 home4">
+                    <div class="navbar_menu row">
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 3).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 3).Skip(4).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 3).Skip(8).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <ul>
+                                @foreach (var item in Model.SectionCategories.Where(s => s.SectionId == 3).Skip(12).Take(4).ToList())
+                                {
+                                    <li>
+                                        <a href="/Shop/Index/@item.SectionId?catId=@item.CategoryId">@item.Category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- <li class="nav-item dropdown homehower">
+                  <a class="nav-link dropdown-toggle home home2" href="shop.html" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Woman
+                  </a>
+                </li>
+                <li class="nav-item dropdown homehower">
+                  <a class="nav-link dropdown-toggle home home2" href="shop.html" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Kids
+                  </a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/Account/Login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Contact/Index">Contact</a>
+                </li>
+            </ul>
+
+            <div class="clearfix"></div>
+
+        </div>
+        <div class="collapse navbar-collapse ml-auto menu_search" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button type="button" class="btn" data-toggle="modal" data-target="#favModal">
+                        <i class="fas fa-heart ii"></i>
+                    </button>
+                </li>
+                @if (Session["user"] == null)
+                {
+                    <li class="nav-item">
+                        <button type="button" class="btn"><a href="/Account/Login"><i class="fas fa-user ii"></i></a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                            <i class="fas fa-shopping-bag ii"></i>
+                        </button>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <button type="button" class="btn">@user.Name</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn" href="/Account/Logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</nav>
+

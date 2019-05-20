@@ -1,0 +1,77 @@
+.button-like {
+  border: 2px solid darkgray;
+  background-color: transparent;
+  text-decoration: none;
+  padding: 1rem;
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+  display: inline-block;
+  border-radius: 3rem;
+  color: darkgray;
+  -webkit-transition: all ease 0.4s;
+  transition: all ease 0.4s;
+  height: 50px;
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.button-like span {
+  margin-left: 0.5rem;
+}
+
+.button-like .fa,
+.button-like span {
+  -webkit-transition: all ease 0.4s;
+  transition: all ease 0.4s;
+}
+
+.button-like:focus {
+  background-color: transparent;
+}
+
+.button-like:focus .fa,
+.button-like:focus span {
+  color: darkgray;
+}
+
+.button-like:hover {
+  border-color: red;
+  background-color: transparent;
+}
+
+.button-like:hover .fa,
+.button-like:hover span {
+  color: red;
+}
+
+.liked {
+  background-color: red;
+  border-color: red;
+}
+
+.liked .fa,
+.liked span {
+  color: white;
+}
+
+.liked:focus {
+  background-color: red;
+}
+
+.liked:focus .fa,
+.liked:focus span {
+  color: white;
+}
+
+.liked:hover {
+  background-color: red;
+  border-color: red;
+}
+
+.liked:hover .fa,
+.liked:hover span {
+  color: white;
+}
+/*# sourceMappingURL=favouritebutton.css.map */

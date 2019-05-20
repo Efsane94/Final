@@ -1,0 +1,42 @@
+﻿@model Final_Code_Project.Models.SectionSize
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>SectionSize</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SectionId, "Section Id", htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.DropDownList("SectionId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SectionId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SizeId, "Size Id", htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.DropDownList("SizeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SizeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Edit" />
+                <a href="Admin/SectionCategory/Index" class="btn btn-outline-primary">Back To List</a>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,72 @@
+﻿@model Final_Code_Project.Models.ViewModels.HomeIndex_VM
+
+<section class="main" style="background-image: url(/Assets/img/@Model.MainHeader.Image);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 title">
+                <div class="content col-sm-12">
+                    <h6>asoss</h6>
+                    <h2>@Model.MainHeader.Title</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="categories">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Sections)
+            {
+                <div class="col-sm-6 col-md-4 mb-3 cat">
+                    <div class="category d-flex justify-content-center align-items-center">
+                        <img src="~/Assets/img/@item.Image" alt="">
+                        <div class="categoryName">
+                            <a href="/Shop/Index/@item.Id">@item.Name</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+<section class="sale">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 saleTitle">
+                <div class="global-sale h-100 d-flex align-items-center justify-content-end" style="background-image: url(/Assets/img/@Model.GlobalSale.Image);">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="brands d-flex justify-content-center ">
+    <div class="col-12">
+        <div class="row">
+            <div class="bran col-lg-2 col-4 col-6 py-4">
+                <img src="~/Assets/img/core-img/brand1.png" alt="">
+            </div>
+            <div class="bran col-lg-2 col-4 col-6 py-4">
+                <img src="~/Assets/img/core-img/brand2.png" alt="">
+            </div>
+            <div class="bran col-lg-2 col-4 col-6 py-4">
+                <img src="~/Assets/img/core-img/brand3.png" alt="">
+            </div>
+            <div class="bran col-lg-2 col-4 col-6 py-4">
+                <img src="~/Assets/img/core-img/brand4.png" alt="">
+            </div>
+            <div class="bran col-lg-2 col-4 col-6 py-4">
+                <img src="~/Assets/img/core-img/brand5.png" alt="">
+            </div>
+            <div class="bran col-lg-2 col-4 col-6 py-4">
+                <img src="~/Assets/img/core-img/brand6.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,89 @@
+﻿@model Final_Code_Project.Models.ProductColorSize
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label>Product</label>
+        @Html.DropDownList("ProductId", new SelectList(ViewBag.products, "Id", "Name"), "Select Product", new { @class = "form-control", id = "products" })
+    </div>
+
+    <div class="form-group">
+        <label>Size</label>
+        <select id="sizes" class="form-control" name="SizeId">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Color</label>
+        @Html.DropDownList("ColorId", new SelectList(ViewBag.colors, "Id", "Name"), "Select Color", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Amount)
+        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", type = "number" })
+        @Html.ValidationMessageFor(m => m.Amount, null, new { @class = "text-danger" })
+    </div>
+
+    @Html.ValidationMessage("allError")
+
+    <input type="submit" class="btn btn-outline-success" value="Create" />
+    <a href="Admin/ProductColorSize/Index" class="btn btn-outline-primary">Back To List</a>
+</form>
+
+@section scripts{
+    <script>
+        ////var product = document.querySelector("#products");
+        ////var size = document.querySelector("#sizes");
+
+
+        //product.onchange = function () {
+        //    var proId = product.value;
+
+        //    var http = new XMLHttpRequest();
+
+        //    http.onreadystatechange = function () {
+        //        if (http.readyState === 4 && http.status === 200) {
+        //            var data = http.responseText;
+
+        //            for (var size2 of data) {
+        //                var option = document.createElement("option");
+        //                option.setAttribute("value", size2.Id);
+        //                option.innerText = size2.Name;
+
+        //                size.append(option);
+        //            }
+        //        }
+        //    }
+
+        //    http.open("GET", "/Admin/Ajax/LoadSizes/" + proId, true);
+
+        //    http.send();
+        //}
+
+        $(function () {
+
+            $(document).on("change", "#products", function () {
+                var selectedproduct = $("#products").val();
+
+                if (selectedproduct) {
+                    $.ajax({
+                        type: "GET",
+                        data: { id:selectedproduct },
+                        url: "/Admin/Ajax/LoadSizes",
+                        success: function (res) {
+                            $("#sizes").html(res)
+                        }
+                    });
+                }
+            })
+
+        });
+    </script>
+}
+
+

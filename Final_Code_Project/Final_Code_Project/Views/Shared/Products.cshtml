@@ -1,0 +1,24 @@
+﻿
+
+@foreach (var item in Model.Products)
+{
+    <div class="col-12 col-sm-6 col-lg-4 products">
+        <div class="product_wrapper">
+            <div class="product_image">
+                <img src="~/Assets/img/@item.Image" alt="">
+            </div>
+            <button class="button button-like btnlike">
+                <i class="fa fa-heart"></i>
+            </button>
+            <div class="product_content">
+                <a href="">
+                    <h6>@item.Name</h6>
+                </a>
+                <p> $@item.Price</p>
+            </div>
+            <div class="btn_add_cart">
+                <a class="button">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+}

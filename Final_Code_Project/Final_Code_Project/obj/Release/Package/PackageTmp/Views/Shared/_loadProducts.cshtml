@@ -1,0 +1,74 @@
+﻿@model Final_Code_Project.Models.ViewModels.Shop_VM
+
+@foreach (var item in Model.Products)
+{
+    if (Model.User != null)
+    {
+        <div class="col-sm-6 col-lg-3 col-md-4 products">
+
+            <div class="product_wrapper" data-id="@item.Id" data-category="@ViewBag.categoryId" data- section="@ViewBag.sectionId">
+                <div class="product_image">
+                    <img src="~/Assets/img/@item.Image" alt="">
+                </div>
+                <div class="product_content">
+                    <a href="/Details/Index/@item.Id">
+                        <h6>@item.Name</h6>
+                    </a>
+                    <p> $@item.Price</p>
+                </div>
+                <div class="btn_add_cart" data-Add="@item.Id" data-photo="@item.Image" , data-price="@item.Price" data-name="@item.Name">
+                    <a class="button">Add to Cart</a>
+                </div>
+            </div>
+
+            @if (Model.Favorites.Any(x => x.ProductId == item.Id && x.UserId == Model.User.Id))
+            {
+                <div class="fav_btn" data-R="@item.Id" data-photo="@item.Image" data-price="@item.Price" data-name="@item.Name">
+                    <span style="font-size:30px; color:red; position:absolute; top:10px; right:8%;" class="favs" data-status="on"><i class="fas fa-heart"></i></span>
+                </div>
+            }
+            else
+            {
+                <div class="fav_btn" data-R="@item.Id" data-photo="@item.Image" data-price="@item.Price" data-name="@item.Name">
+                    <span style="font-size:30px; color:darkgrey; position:absolute; top:10px; right:8%;" class="favs" data-status="off"><i class="fas fa-heart"></i></span>
+                </div>
+            }
+
+        </div>
+    }
+    else if (Model.User == null)
+    {
+        <div class="col-sm-6 col-lg-3 col-md-4 products">
+
+            <div class="product_wrapper" data-id="@item.Id" data-category="@ViewBag.categoryId" data- section="@ViewBag.sectionId">
+                <div class="product_image">
+                    <img src="~/Assets/img/@item.Image" alt="">
+                </div>
+                <div class="product_content">
+                    <a href="/Details/Index/@item.Id">
+                        <h6>@item.Name</h6>
+                    </a>
+                    <p> $@item.Price</p>
+                </div>
+
+                <div class="btn_add_cart">
+                    <a href="/Account/Login" class="button">Add to Cart</a>
+                </div>
+
+                <a href="/Account/Login">
+                    <div class="fav_btn" @*data-R="@item.Id" data-photo="@item.Image" data-price="@item.Price" data-name="@item.Name"*@>
+                        <span style="font-size:30px; color:darkgrey; position:absolute; top:10px; right:8%;" class="favs" data-status="off"><i class="fas fa-heart"></i></span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    }
+
+
+
+
+}
+
+
+

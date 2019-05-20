@@ -1,0 +1,121 @@
+.product_details {
+  position: relative;
+}
+
+.product_details .row .product_images {
+  width: 49.5%;
+}
+
+.product_details .row .product_images .left, .product_details .row .product_images .right {
+  background: none;
+}
+
+.product_details .row .product_images .left span, .product_details .row .product_images .right span {
+  color: gray;
+}
+
+.product_details .row .product_description {
+  width: 49.5%;
+  height: auto;
+  padding: 90px 5%;
+}
+
+.product_details .row .product_description span {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #787878;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.product_details .row .product_description h2 {
+  font-size: 30px;
+  display: block;
+  margin-bottom: 10px;
+  color: #000000;
+  line-height: 1.3;
+  font-weight: 700;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.product_details .row .product_description p.product_price {
+  font-weight: bold;
+  font-size: 24px;
+  color: crimson;
+}
+
+.product_details .row .product_description p.product_price span {
+  display: inline-block;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 24px;
+  color: #787878;
+  font-weight: 700;
+  text-decoration: line-through;
+  margin-right: 15px;
+}
+
+.product_details .row .product_description p.product_desc {
+  font-size: 16px;
+  color: #787878;
+  line-height: 2;
+  font-weight: 400;
+}
+
+.product_details .row .product_description form {
+  position: relative;
+}
+
+.product_details .row .product_description form .selectbox {
+  margin-top: 70px;
+  margin-bottom: 30px;
+}
+
+.product_details .row .product_description form .selectbox .opt {
+  position: relative;
+  border: 1px solid #ebebeb;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 500;
+  height: 60px;
+  line-height: 60;
+  text-transform: uppercase;
+  width: 220px;
+  display: inline-block;
+  margin: 0px;
+}
+
+.product_details .row .product_description form .selectbox .opt select {
+  position: absolute;
+  z-index: 200;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 10px;
+  opacity: 1;
+  border-radius: 0px;
+  color: #787878;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  height: 100%;
+}
+
+.product_details .row .product_description .cart_fav .cart_fav_box button {
+  width: 170px;
+  height: 50px;
+  border-radius: 0px;
+  text-transform: uppercase;
+  background-color: blue;
+  font-weight: 600;
+  color: #ffffff;
+  margin-right: 40px;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: 100%;
+  margin: auto;
+}
+/*# sourceMappingURL=details.css.map */

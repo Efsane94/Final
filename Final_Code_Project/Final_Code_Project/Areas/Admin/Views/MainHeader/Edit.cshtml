@@ -1,0 +1,30 @@
+﻿@model Final_Code_Project.Models.MainHeader
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<form action="/Admin/MainHeader/Edit" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", id = "content" })
+        @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Photo)
+        @Html.TextBoxFor(m => m.Photo, new { @class = "form-control", type = "file" })
+        @Html.ValidationMessageFor(m => m.Photo, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label>Current Image:</label>
+        <img src="~/Assets/img/@Model.Image" style="height:80px; object-fit:contain" />
+    </div>
+    <input type="submit" class="btn btn-outline-success" value="Edit" />
+    <a href="/Admin/MainHeader/Index" class="btn btn-outline-primary">Back To List</a>
+</form>
+
+
+
+
